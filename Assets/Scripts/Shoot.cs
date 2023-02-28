@@ -48,22 +48,19 @@ public class Shoot : MonoBehaviour
 	{
 		if (!bullet.CompareTag("SpecialAbility"))
 		{
-			bullets.bulletPool.Add(bullet);
-			bullets.activated.Remove(bullet);
-			bullet.SetActive(false);		
+			bullets.Despawn(bullet);	
 		}
 	}
 
 	private void Shooting()
 	{
 		Debug.Log("Shooting");
+		
 		for (int i = 0; i < weaponCounter; i++)
 		{
-			bullets.bulletPool[0].transform.position=ShootingPoint[i].transform.position;
-			bullets.bulletPool[0].SetActive(true);
-			bullets.activated.Add(bullets.bulletPool[0]);
-			bullets.bulletPool.Remove(bullets.bulletPool[0]);
+			bullets.Spawn(ShootingPoint[i].transform.position);
 		}
+
 	}
 	private void SpecialAbility()
 	{
